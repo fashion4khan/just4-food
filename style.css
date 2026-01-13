@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+
+/* .header{
+    display: flex;
+    border: 1px solid black;
+    justify-content: space-between;
+    padding-right: 40px;
+}
+.logo{
+    width: 120px;
+}
+.head-items{
+    padding: 0px 20px;
+}
+.head-items > ul{
+    font-size: 20px;
+    list-style: none;
+    display: flex;
+}
+.head-items > ul > li{
+    padding: 10px;
+    margin: 10px;
+}
+.bodY{
+    border: 1px solid black;
+    padding: 20px;
+}
+.res-card{
+    margin: 20px 30px 20px 30px;
+    height: 330px;
+    width: 280px;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+.res-card:hover{
+    border: 1px solid black;
+    cursor: pointer;
+}
+.res-card img{
+    padding: 5px 15px 0px 15px;
+    height: 170px;
+    width: 250px;
+}
+.res-card p{
+    margin: 4px 0;
+    line-height: 1.2;
+}
+.cards{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.Search{
+    border: 1px solid black;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+.button{
+    padding: 20px;
+}
+.filter-btn{
+    cursor: pointer;
+}
+.shimmer
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+.shim{
+    margin: 20px 30px 20px 30px;
+    height: 330px;
+    width: 280px;
+    background-color: #f0f0f0;
+}
+.login{
+    padding: 0 20px;
+    cursor: pointer;
+}
+.menu{
+    margin: 50px 150px 0px 150px;
+    align-items: center;
+    text-align: center;
+}
+.details
+{
+    margin: 30px 300px 30px 300px;
+    height: 200px;
+    width: auto;
+    border: 1px solid black;
+    border-radius: 2%;
+}
+.user-card{
+    border: 1px solid black;
+    padding: 10px;
+    margin-top: 10px;
+} */

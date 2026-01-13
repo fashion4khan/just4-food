@@ -1,0 +1,2 @@
+var e=globalThis.parcelRequiread24;(0,e.register)("d40F8",function(r,a){Object.defineProperty(r.exports,"__esModule",{value:!0,configurable:!0}),Object.defineProperty(r.exports,"default",{get:()=>t,set:void 0,enumerable:!0,configurable:!0});var o=e("ayMG0"),t=()=>(0,o.jsx)("h1",{className:"p-24 text-6xl",children:"This is our grocery store and we are working on it !"})});
+//# sourceMappingURL=grocery.ca3555ef.js.map
