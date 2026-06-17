@@ -4,13 +4,25 @@ import UserClass from "./UserClass";
 class About extends Component {
   render() {
     return (
-      <div className="p-24 bg-gray-50 min-h-screen flex flex-col items-center justify-center text-center">
-        <h1 className="text-4xl font-bold mb-4">About Us</h1>
-        <p className="text-lg mb-6">
-          Welcome to Just4Food! We are dedicated to delivering delicious meals right to your doorstep with speed and convenience.
-        </p>
-        <h2 className="text-2xl font-semibold mb-4">Our Team</h2>
-        <UserClass name="Rusmeen Khan" location="Gurgaon, Haryana" />
+      <div className="pt-24 pb-16 px-4 md:px-8 bg-gray-50 min-h-screen flex flex-col items-center text-center">
+        <div className="max-w-2xl">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            About <span className="text-orange-500">Just4Food</span>
+          </h1>
+          <p className="text-lg text-gray-600 mb-10 leading-relaxed">
+            We're dedicated to delivering delicious meals right to your
+            doorstep with speed and convenience.
+          </p>
+        </div>
+
+        <div className="w-full max-w-md">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">
+            Meet the founder
+          </h2>
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <UserClass name="Rusmeen Khan" location="Gurgaon, Haryana" />
+          </div>
+        </div>
       </div>
     );
   }

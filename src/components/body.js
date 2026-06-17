@@ -1,104 +1,141 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { FiSearch } from "react-icons/fi";
 import ResCard from "./restrocard";
 import Shimmer from "./shimmer";
 import { DUMMY_RESTAURANTS } from "../utils/dummyData";
+
+const PAGE_SIZE = 8;
 
 const Body = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [loading, setLoading] = useState(true);
-  const [offset, setOffset] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const [activeFilter, setActiveFilter] = useState(null); // "topRated" | null
 
   const fetchData = async () => {
-  setLoading(true);
+    setLoading(true);
 
-  const json = DUMMY_RESTAURANTS;
+    const json = DUMMY_RESTAURANTS;
 
-  const newRestaurants =
-    json?.data?.data?.cards?.find(
-      (c) => c?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    )?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
+    const newRestaurants =
+      json?.data?.data?.cards?.find(
+        (c) => c?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      )?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
 
-  setRestaurants(newRestaurants);
-  setFiltered(newRestaurants);
-
-  setLoading(false);
-};
+    setRestaurants(newRestaurants);
+    setFiltered(newRestaurants);
+    setLoading(false);
+  };
 
   useEffect(() => {
     fetchData();
   }, []);
 
-  const handleSearch = () => {
+  useEffect(() => {
+    let result = restaurants;
+
+    if (activeFilter === "topRated") {
+      result = result.filter((r) => r.info.avgRating > 4.3);
+    }
+
     const text = searchText.trim().toLowerCase();
-    if (!text) return setFiltered(restaurants);
-    setFiltered(
-      restaurants.filter((r) => r.info.name.toLowerCase().includes(text))
-    );
+    if (text) {
+      result = result.filter((r) => r.info.name.toLowerCase().includes(text));
+    }
+
+    setFiltered(result);
+    setVisibleCount(PAGE_SIZE);
+  }, [searchText, activeFilter, restaurants]);
+
+  const toggleTopRated = () => {
+    setActiveFilter((prev) => (prev === "topRated" ? null : "topRated"));
   };
 
   const handleLoadMore = () => {
-    fetchData(offset);
+    setVisibleCount((prev) => prev + PAGE_SIZE);
   };
 
+  const visibleRestaurants = filtered.slice(0, visibleCount);
+  const hasMore = visibleCount < filtered.length;
+
   if (loading && restaurants.length === 0) return <Shimmer />;
+
   return (
-    <div className="pt-24 bg-gray-100 m-auto">
-      <div className="flex flex-col md:flex-row justify-between items-center p-4 md:p-6 rounded-lg gap-4">
-        <div className="flex w-full md:w-3/4 md:mx-16 items-center">
-          <input
-            type="text"
-            className="flex-grow border border-gray-400 pl-4 py-2 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-            placeholder="Search Restaurants..."
-          />
-          <button
-            onClick={handleSearch}
-            className="bg-orange-500 hover:bg-orange-700 text-white font-semibold px-4 py-2 ml-2 rounded-r-md cursor-pointer transition-colors"
-          >
-            Search
-          </button>
-        </div>
+    <div className="pt-16 md:pt-20 bg-gray-100 min-h-screen">
+      {/* Hero */}
+      <div className="bg-gradient-to-br from-orange-600 to-orange-800 px-4 md:px-8 py-8 md:py-10">
+        <div className="max-w-3xl mx-auto text-center">
+          <h1 className="text-2xl md:text-4xl font-bold text-white mb-2">
+            Hungry? We've got you.
+          </h1>
+          <p className="text-orange-100 mb-6">
+            Order from your favorite restaurants, delivered fast.
+          </p>
 
-        <div className="w-full md:w-auto md:mx-16">
-          <button
-            onClick={() =>
-              setFiltered(restaurants.filter((r) => r.info.avgRating > 4.3))
-            }
-            className="w-auto bg-green-500 hover:bg-green-600 text-white font-semibold px-2 py-2 rounded-full cursor-pointer transition-colors"
-          >
-            Top Rated
-          </button>
+          <div className="flex w-full max-w-xl mx-auto items-center bg-white rounded-md overflow-hidden shadow-sm">
+            <div className="relative flex-grow">
+              <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+              <input
+                type="text"
+                className="w-full border-none pl-10 pr-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-400 rounded-l-md"
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                placeholder="Search restaurants..."
+              />
+            </div>
+            <button
+              onClick={() => {}}
+              className="bg-orange-600 hover:bg-orange-700 text-white font-semibold px-6 py-3 transition-colors"
+            >
+              Search
+            </button>
+          </div>
+
+          <div className="flex justify-center gap-2 mt-4">
+            <button
+              onClick={toggleTopRated}
+              className={`px-4 py-1.5 rounded-full text-sm font-semibold border transition-colors ${
+                activeFilter === "topRated"
+                  ? "bg-white text-orange-700 border-white"
+                  : "bg-transparent text-white border-white/40 hover:bg-white/10"
+              }`}
+            >
+              ⭐ Top Rated
+            </button>
+          </div>
         </div>
       </div>
 
-      <div className="flex flex-wrap justify-center p-4 pt-6 gap-4">
-        {filtered.map((res, index) => (
-          <Link
-            key={`${res.info.id}-${index}`}
-            to={`/restaurants/${res.info.id}`}
-            className="w-full sm:w-[48%] md:w-[31%] xl:w-[23%] cursor-pointer"
-          >
-            <ResCard resData={res} />
-          </Link>
-        ))}
-      </div>
+      {/* Results */}
+      <div className="px-4 md:px-8 py-6">
+        {visibleRestaurants.length === 0 ? (
+          <p className="text-center text-gray-500 py-12">
+            No restaurants found. Try a different search.
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5">
+            {visibleRestaurants.map((res, index) => (
+              <Link key={`${res.info.id}-${index}`} to={`/restaurants/${res.info.id}`}>
+                <ResCard resData={res} />
+              </Link>
+            ))}
+          </div>
+        )}
 
-      {filtered.length > 0 && (
-        <div className="text-center my-4">
-          <button
-            className="px-4 py-2 bg-green-500 text-white rounded-lg cursor-pointer"
-            onClick={handleLoadMore}
-            disabled={loading}
-          >
-            {loading ? "Loading..." : "Load More"}
-          </button>
-        </div>
-      )}
+        {hasMore && (
+          <div className="text-center mt-6">
+            <button
+              className="px-6 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors"
+              onClick={handleLoadMore}
+            >
+              Load More
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

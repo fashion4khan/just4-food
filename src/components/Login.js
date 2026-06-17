@@ -1,183 +1,171 @@
-import React, { useState, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import Header from "./header";
-import { FormValidation, FormValidationWithName } from "../utils/validate";
+import { useDispatch } from "react-redux";
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
 import { login } from "../utils/loginSlice";
-import * as firebase from "firebase/app";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyB_JCVc6FfhDDgPJE2EgBx4M4AiBrcQEAY",
-  authDomain: "just4food-135fd.firebaseapp.com",
-  projectId: "just4food-135fd",
-  storageBucket: "just4food-135fd.firebasestorage.app",
-  messagingSenderId: "924492667527",
-  appId: "1:924492667527:web:d05fed5e2bd3ce377fb622",
-  measurementId: "G-EPYY2X44K9"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
 
 const Login = () => {
-  const [isLogin, setIsLogin] = useState(true);
-  const [otpSent, setOtpSent] = useState(false);
-  const [otp, setOtp] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const nameRef = useRef(null);
-  const emailRef = useRef(null);
-  const phoneRef = useRef(null);
-  const [confirmationResult, setConfirmationResult] = useState(null);
-  const dispatch = useDispatch();
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const sendOTP = async () => {
-  console.log("Firebase auth object:", auth);
-  let message = isLogin
-    ? FormValidation(phoneRef.current.value)
-    : FormValidationWithName(
-        nameRef.current.value,
-        emailRef.current.value,
-        phoneRef.current.value
-      );
-
-  if (message) {
-    setErrorMessage(message);
-    return;
-  }
-  setErrorMessage("");
-
-  if (!window.recaptchaVerifier) {
-    window.recaptchaVerifier = new RecaptchaVerifier(
-      "recaptcha-container",
-      { size: "invisible" },
-      auth
-    );
-  }
-
-  const recaptcha = window.recaptchaVerifier;
-
-  try {
-    const phoneNumber = "+91" + phoneRef.current.value;
-    const result = await signInWithPhoneNumber(auth, phoneNumber, recaptcha);
-    setConfirmationResult(result);
-    setOtpSent(true);
-  } catch (error) {
-    setErrorMessage("Failed to send OTP: " + error.message);
-  }
-};
-
-  const verifyOTP = async () => {
-    if (!otp) {
-      setErrorMessage("Please enter OTP");
-      return;
-    }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
 
     try {
-      await confirmationResult.confirm(otp);
-      dispatch(
-        login({
-          phone: phoneRef.current.value,
-          name: !isLogin ? nameRef.current.value : null,
-        })
-      );
+      if (isSignUp) {
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        if (name) {
+          await updateProfile(userCredential.user, { displayName: name });
+        }
+        dispatch(
+          login({
+            uid: userCredential.user.uid,
+            email: userCredential.user.email,
+            name: name || userCredential.user.displayName,
+          })
+        );
+      } else {
+        const userCredential = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        dispatch(
+          login({
+            uid: userCredential.user.uid,
+            email: userCredential.user.email,
+            name: userCredential.user.displayName,
+          })
+        );
+      }
       navigate("/");
-    } catch (error) {
-      setErrorMessage("Invalid OTP");
+    } catch (err) {
+      setError(getFriendlyError(err.code));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getFriendlyError = (code) => {
+    switch (code) {
+      case "auth/email-already-in-use":
+        return "An account with this email already exists.";
+      case "auth/invalid-email":
+        return "Please enter a valid email address.";
+      case "auth/weak-password":
+        return "Password should be at least 6 characters.";
+      case "auth/invalid-credential":
+      case "auth/wrong-password":
+      case "auth/user-not-found":
+        return "Incorrect email or password.";
+      default:
+        return "Something went wrong. Please try again.";
     }
   };
 
   return (
-    <div className="relative min-h-screen bg-gray-100">
-      <Header />
-      <div className="flex justify-center items-center h-full pt-24">
-        <form className="bg-white p-6 rounded-lg shadow-md w-96">
-          <h1 className="text-2xl font-bold text-center mb-4">
-            Login or Create Account
-          </h1>
+    <div className="pt-24 px-4 min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="w-full max-w-sm bg-white rounded-lg shadow-md p-8">
+        <h1 className="text-2xl font-bold text-gray-900 mb-1 text-center">
+          {isSignUp ? "Create your account" : "Welcome back"}
+        </h1>
+        <p className="text-gray-500 text-sm text-center mb-6">
+          {isSignUp
+            ? "Sign up to start ordering"
+            : "Sign in to continue ordering"}
+        </p>
 
-          <div className="flex justify-center mb-4 space-x-4">
-            <button
-              type="button"
-              className={`px-4 py-2 rounded ${
-                isLogin ? "bg-orange-500 text-white" : "bg-gray-200"
-              }`}
-              onClick={() => setIsLogin(true)}
-            >
-              Login
-            </button>
-            <button
-              type="button"
-              className={`px-4 py-2 rounded ${
-                !isLogin ? "bg-orange-500 text-white" : "bg-gray-200"
-              }`}
-              onClick={() => setIsLogin(false)}
-            >
-              Create Account
-            </button>
+        {error && (
+          <div className="bg-red-50 text-red-600 text-sm rounded-md px-3 py-2 mb-4">
+            {error}
           </div>
+        )}
 
-          {!isLogin && (
-            <>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          {isSignUp && (
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Name
+              </label>
               <input
                 type="text"
-                ref={nameRef}
-                placeholder="Full Name"
-                className="w-full p-2 border mb-2 rounded"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                placeholder="Your name"
               />
-              <input
-                type="email"
-                ref={emailRef}
-                placeholder="Email"
-                className="w-full p-2 border mb-2 rounded"
-              />
-            </>
+            </div>
           )}
 
-          <input
-            type="tel"
-            ref={phoneRef}
-            placeholder="Mobile Number"
-            className="w-full p-2 border mb-2 rounded"
-          />
-
-          {otpSent && (
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Email
+            </label>
             <input
-              type="text"
-              value={otp}
-              onChange={(e) => setOtp(e.target.value)}
-              placeholder="Enter OTP"
-              className="w-full p-2 border mb-2 rounded"
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
+              placeholder="you@example.com"
             />
-          )}
+          </div>
 
-          {errorMessage && (
-            <p className="text-red-500 text-sm mb-2">{errorMessage}</p>
-          )}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Password
+            </label>
+            <input
+              type="password"
+              required
+              minLength={6}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
+              placeholder="••••••••"
+            />
+          </div>
 
-          {!otpSent ? (
-            <button
-              type="button"
-              onClick={sendOTP}
-              className="w-full bg-orange-500 text-white py-2 rounded mb-2"
-            >
-              Send OTP
-            </button>
-          ) : (
-            <button
-              type="button"
-              onClick={verifyOTP}
-              className="w-full bg-green-500 text-white py-2 rounded mb-2"
-            >
-              Verify OTP
-            </button>
-          )}
-
-          <div id="recaptcha-container"></div>
+          <button
+            type="submit"
+            disabled={loading}
+            className="bg-orange-500 hover:bg-orange-600 disabled:opacity-60 text-white font-semibold py-2.5 rounded-md transition-colors mt-2"
+          >
+            {loading ? "Please wait..." : isSignUp ? "Sign Up" : "Sign In"}
+          </button>
         </form>
+
+        <p className="text-center text-sm text-gray-500 mt-6">
+          {isSignUp ? "Already have an account?" : "New to Just4Food?"}{" "}
+          <button
+            onClick={() => {
+              setIsSignUp(!isSignUp);
+              setError("");
+            }}
+            className="text-orange-500 font-semibold hover:underline"
+          >
+            {isSignUp ? "Sign In" : "Sign Up"}
+          </button>
+        </p>
       </div>
     </div>
   );
