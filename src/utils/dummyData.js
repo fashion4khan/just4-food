@@ -1,580 +1,3 @@
-// export const DUMMY_RESTAURANTS = {
-//   status: true,
-//   message: "Restaurant List fetched successfully",
-//   data: {
-//     data: {
-//       cards: [
-//         {},
-//         {
-//           card: {
-//             card: {
-//               gridElements: {
-//                 infoWithStyle: {
-//                   restaurants: [
-//                     {
-//                       info: {
-//                         id: "123456",
-//                         name: "Pizza Paradise",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/17/6def0f0f-9e6c-45c0-b5e6-05af750f27b5_795906.JPG",
-//                         locality: "MG Road",
-//                         areaName: "Central District",
-//                         costForTwo: "₹400 for two",
-//                         cuisines: ["Pizza", "Italian", "Fast Food"],
-//                         avgRating: 4.3,
-//                         sla: { deliveryTime: 30, lastMileTravel: 3.5 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "50% OFF",
-//                           subHeader: "UPTO ₹100"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "234567",
-//                         name: "Burger Hub",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2024/6/24/acfcaacc-edf0-4189-8264-d614d312c0ee_740457.JPG",
-//                         locality: "Park Street",
-//                         areaName: "Downtown",
-//                         costForTwo: "₹300 for two",
-//                         cuisines: ["Burgers", "American", "Fast Food"],
-//                         avgRating: 4.5,
-//                         sla: { deliveryTime: 25, lastMileTravel: 2 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "40% OFF",
-//                           subHeader: "UPTO ₹80"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "345678",
-//                         name: "Green Bites",
-//                         cloudinaryImageId: "e0839ff574213e6f35b3899ebf1fc597",
-//                         locality: "Residency Road",
-//                         areaName: "South Zone",
-//                         costForTwo: "₹250 for two",
-//                         cuisines: ["Healthy Food", "Salads", "Vegan"],
-//                         avgRating: 4.7,
-//                         sla: { deliveryTime: 20, lastMileTravel: 1.5 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "30% OFF",
-//                           subHeader: "UPTO ₹75"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "456789",
-//                         name: "Spice Kingdom",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2024/6/24/acfcaacc-edf0-4189-8264-d614d312c0ee_740457.JPG",
-//                         locality: "Brigade Road",
-//                         areaName: "City Center",
-//                         costForTwo: "₹500 for two",
-//                         cuisines: ["Indian", "North Indian", "Biryani"],
-//                         avgRating: 4.2,
-//                         sla: { deliveryTime: 35, lastMileTravel: 4 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "20% OFF",
-//                           subHeader: "UPTO ₹50"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "567890",
-//                         name: "Chinese Dragon",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/18/ba9f1f59-30d5-44de-afad-df6db8471ead_9648.jpg",
-//                         locality: "Commercial Street",
-//                         areaName: "East District",
-//                         costForTwo: "₹350 for two",
-//                         cuisines: ["Chinese", "Asian", "Thai"],
-//                         avgRating: 4.4,
-//                         sla: { deliveryTime: 28, lastMileTravel: 2.8 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "60% OFF",
-//                           subHeader: "UPTO ₹120"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "678901",
-//                         name: "Dessert Delight",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2024/11/8/731001f1-f1c4-4f5f-849f-79a697cb0b72_390173.jpg",
-//                         locality: "Lavelle Road",
-//                         areaName: "West End",
-//                         costForTwo: "₹200 for two",
-//                         cuisines: ["Desserts", "Ice Cream", "Bakery"],
-//                         avgRating: 4.6,
-//                         sla: { deliveryTime: 22, lastMileTravel: 1.8 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "25% OFF",
-//                           subHeader: "UPTO ₹60"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "789012",
-//                         name: "Sushi Station",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2024/6/24/acfcaacc-edf0-4189-8264-d614d312c0ee_740457.JPG",
-//                         locality: "Indiranagar",
-//                         areaName: "Uptown",
-//                         costForTwo: "₹800 for two",
-//                         cuisines: ["Japanese", "Sushi", "Asian"],
-//                         avgRating: 4.8,
-//                         sla: { deliveryTime: 40, lastMileTravel: 5.2 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "15% OFF",
-//                           subHeader: "UPTO ₹150"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "890123",
-//                         name: "South Spice",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/17/6def0f0f-9e6c-45c0-b5e6-05af750f27b5_795906.JPG",
-//                         locality: "Jayanagar",
-//                         areaName: "South Bangalore",
-//                         costForTwo: "₹300 for two",
-//                         cuisines: ["South Indian", "Dosa", "Idli"],
-//                         avgRating: 4.5,
-//                         sla: { deliveryTime: 25, lastMileTravel: 3 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "35% OFF",
-//                           subHeader: "UPTO ₹70"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "901234",
-//                         name: "Pasta Palace",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2025/10/17/7bd350a8-55e7-459b-83a2-e250e670d194_14558.JPG",
-//                         locality: "Koramangala",
-//                         areaName: "Tech Hub",
-//                         costForTwo: "₹450 for two",
-//                         cuisines: ["Italian", "Pasta", "Continental"],
-//                         avgRating: 4.1,
-//                         sla: { deliveryTime: 32, lastMileTravel: 3.8 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "45% OFF",
-//                           subHeader: "UPTO ₹90"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "123456",
-//                         name: "Pizza Paradise",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/17/6def0f0f-9e6c-45c0-b5e6-05af750f27b5_795906.JPG",
-//                         locality: "MG Road",
-//                         areaName: "Central District",
-//                         costForTwo: "₹400 for two",
-//                         cuisines: ["Pizza", "Italian", "Fast Food"],
-//                         avgRating: 4.3,
-//                         sla: { deliveryTime: 30, lastMileTravel: 3.5 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "50% OFF",
-//                           subHeader: "UPTO ₹100"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "234567",
-//                         name: "Burger Hub",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2024/6/24/acfcaacc-edf0-4189-8264-d614d312c0ee_740457.JPG",
-//                         locality: "Park Street",
-//                         areaName: "Downtown",
-//                         costForTwo: "₹300 for two",
-//                         cuisines: ["Burgers", "American", "Fast Food"],
-//                         avgRating: 4.5,
-//                         sla: { deliveryTime: 25, lastMileTravel: 2 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "40% OFF",
-//                           subHeader: "UPTO ₹80"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "345678",
-//                         name: "Green Bites",
-//                         cloudinaryImageId: "e0839ff574213e6f35b3899ebf1fc597",
-//                         locality: "Residency Road",
-//                         areaName: "South Zone",
-//                         costForTwo: "₹250 for two",
-//                         cuisines: ["Healthy Food", "Salads", "Vegan"],
-//                         avgRating: 4.7,
-//                         sla: { deliveryTime: 20, lastMileTravel: 1.5 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "30% OFF",
-//                           subHeader: "UPTO ₹75"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "456789",
-//                         name: "Spice Kingdom",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2024/6/24/acfcaacc-edf0-4189-8264-d614d312c0ee_740457.JPG",
-//                         locality: "Brigade Road",
-//                         areaName: "City Center",
-//                         costForTwo: "₹500 for two",
-//                         cuisines: ["Indian", "North Indian", "Biryani"],
-//                         avgRating: 4.2,
-//                         sla: { deliveryTime: 35, lastMileTravel: 4 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "20% OFF",
-//                           subHeader: "UPTO ₹50"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "567890",
-//                         name: "Chinese Dragon",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/18/ba9f1f59-30d5-44de-afad-df6db8471ead_9648.jpg",
-//                         locality: "Commercial Street",
-//                         areaName: "East District",
-//                         costForTwo: "₹350 for two",
-//                         cuisines: ["Chinese", "Asian", "Thai"],
-//                         avgRating: 4.4,
-//                         sla: { deliveryTime: 28, lastMileTravel: 2.8 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "60% OFF",
-//                           subHeader: "UPTO ₹120"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "678901",
-//                         name: "Dessert Delight",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2024/11/8/731001f1-f1c4-4f5f-849f-79a697cb0b72_390173.jpg",
-//                         locality: "Lavelle Road",
-//                         areaName: "West End",
-//                         costForTwo: "₹200 for two",
-//                         cuisines: ["Desserts", "Ice Cream", "Bakery"],
-//                         avgRating: 4.6,
-//                         sla: { deliveryTime: 22, lastMileTravel: 1.8 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "25% OFF",
-//                           subHeader: "UPTO ₹60"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "789012",
-//                         name: "Sushi Station",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2024/6/24/acfcaacc-edf0-4189-8264-d614d312c0ee_740457.JPG",
-//                         locality: "Indiranagar",
-//                         areaName: "Uptown",
-//                         costForTwo: "₹800 for two",
-//                         cuisines: ["Japanese", "Sushi", "Asian"],
-//                         avgRating: 4.8,
-//                         sla: { deliveryTime: 40, lastMileTravel: 5.2 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "15% OFF",
-//                           subHeader: "UPTO ₹150"
-//                         }
-//                       }
-//                     },
-//                     {
-//                     info: {
-//                         id: "123456",
-//                         name: "Pizza Paradise",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/17/6def0f0f-9e6c-45c0-b5e6-05af750f27b5_795906.JPG",
-//                         locality: "MG Road",
-//                         areaName: "Central District",
-//                         costForTwo: "₹400 for two",
-//                         cuisines: ["Pizza", "Italian", "Fast Food"],
-//                         avgRating: 4.3,
-//                         sla: { deliveryTime: 30, lastMileTravel: 3.5 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "50% OFF",
-//                           subHeader: "UPTO ₹100"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "234567",
-//                         name: "Burger Hub",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2024/6/24/acfcaacc-edf0-4189-8264-d614d312c0ee_740457.JPG",
-//                         locality: "Park Street",
-//                         areaName: "Downtown",
-//                         costForTwo: "₹300 for two",
-//                         cuisines: ["Burgers", "American", "Fast Food"],
-//                         avgRating: 4.5,
-//                         sla: { deliveryTime: 25, lastMileTravel: 2 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "40% OFF",
-//                           subHeader: "UPTO ₹80"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "345678",
-//                         name: "Green Bites",
-//                         cloudinaryImageId: "e0839ff574213e6f35b3899ebf1fc597",
-//                         locality: "Residency Road",
-//                         areaName: "South Zone",
-//                         costForTwo: "₹250 for two",
-//                         cuisines: ["Healthy Food", "Salads", "Vegan"],
-//                         avgRating: 4.7,
-//                         sla: { deliveryTime: 20, lastMileTravel: 1.5 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "30% OFF",
-//                           subHeader: "UPTO ₹75"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "456789",
-//                         name: "Spice Kingdom",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2024/6/24/acfcaacc-edf0-4189-8264-d614d312c0ee_740457.JPG",
-//                         locality: "Brigade Road",
-//                         areaName: "City Center",
-//                         costForTwo: "₹500 for two",
-//                         cuisines: ["Indian", "North Indian", "Biryani"],
-//                         avgRating: 4.2,
-//                         sla: { deliveryTime: 35, lastMileTravel: 4 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "20% OFF",
-//                           subHeader: "UPTO ₹50"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "567890",
-//                         name: "Chinese Dragon",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/18/ba9f1f59-30d5-44de-afad-df6db8471ead_9648.jpg",
-//                         locality: "Commercial Street",
-//                         areaName: "East District",
-//                         costForTwo: "₹350 for two",
-//                         cuisines: ["Chinese", "Asian", "Thai"],
-//                         avgRating: 4.4,
-//                         sla: { deliveryTime: 28, lastMileTravel: 2.8 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "60% OFF",
-//                           subHeader: "UPTO ₹120"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "678901",
-//                         name: "Dessert Delight",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2024/11/8/731001f1-f1c4-4f5f-849f-79a697cb0b72_390173.jpg",
-//                         locality: "Lavelle Road",
-//                         areaName: "West End",
-//                         costForTwo: "₹200 for two",
-//                         cuisines: ["Desserts", "Ice Cream", "Bakery"],
-//                         avgRating: 4.6,
-//                         sla: { deliveryTime: 22, lastMileTravel: 1.8 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "25% OFF",
-//                           subHeader: "UPTO ₹60"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "789012",
-//                         name: "Sushi Station",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2024/6/24/acfcaacc-edf0-4189-8264-d614d312c0ee_740457.JPG",
-//                         locality: "Indiranagar",
-//                         areaName: "Uptown",
-//                         costForTwo: "₹800 for two",
-//                         cuisines: ["Japanese", "Sushi", "Asian"],
-//                         avgRating: 4.8,
-//                         sla: { deliveryTime: 40, lastMileTravel: 5.2 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "15% OFF",
-//                           subHeader: "UPTO ₹150"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "890123",
-//                         name: "South Spice",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/17/6def0f0f-9e6c-45c0-b5e6-05af750f27b5_795906.JPG",
-//                         locality: "Jayanagar",
-//                         areaName: "South Bangalore",
-//                         costForTwo: "₹300 for two",
-//                         cuisines: ["South Indian", "Dosa", "Idli"],
-//                         avgRating: 4.5,
-//                         sla: { deliveryTime: 25, lastMileTravel: 3 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "35% OFF",
-//                           subHeader: "UPTO ₹70"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "901234",
-//                         name: "Pasta Palace",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2025/10/17/7bd350a8-55e7-459b-83a2-e250e670d194_14558.JPG",
-//                         locality: "Koramangala",
-//                         areaName: "Tech Hub",
-//                         costForTwo: "₹450 for two",
-//                         cuisines: ["Italian", "Pasta", "Continental"],
-//                         avgRating: 4.1,
-//                         sla: { deliveryTime: 32, lastMileTravel: 3.8 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "45% OFF",
-//                           subHeader: "UPTO ₹90"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "123456",
-//                         name: "Pizza Paradise",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/17/6def0f0f-9e6c-45c0-b5e6-05af750f27b5_795906.JPG",
-//                         locality: "MG Road",
-//                         areaName: "Central District",
-//                         costForTwo: "₹400 for two",
-//                         cuisines: ["Pizza", "Italian", "Fast Food"],
-//                         avgRating: 4.3,
-//                         sla: { deliveryTime: 30, lastMileTravel: 3.5 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "50% OFF",
-//                           subHeader: "UPTO ₹100"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "234567",
-//                         name: "Burger Hub",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2024/6/24/acfcaacc-edf0-4189-8264-d614d312c0ee_740457.JPG",
-//                         locality: "Park Street",
-//                         areaName: "Downtown",
-//                         costForTwo: "₹300 for two",
-//                         cuisines: ["Burgers", "American", "Fast Food"],
-//                         avgRating: 4.5,
-//                         sla: { deliveryTime: 25, lastMileTravel: 2 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "40% OFF",
-//                           subHeader: "UPTO ₹80"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "345678",
-//                         name: "Green Bites",
-//                         cloudinaryImageId: "e0839ff574213e6f35b3899ebf1fc597",
-//                         locality: "Residency Road",
-//                         areaName: "South Zone",
-//                         costForTwo: "₹250 for two",
-//                         cuisines: ["Healthy Food", "Salads", "Vegan"],
-//                         avgRating: 4.7,
-//                         sla: { deliveryTime: 20, lastMileTravel: 1.5 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "30% OFF",
-//                           subHeader: "UPTO ₹75"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "456789",
-//                         name: "Spice Kingdom",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2024/6/24/acfcaacc-edf0-4189-8264-d614d312c0ee_740457.JPG",
-//                         locality: "Brigade Road",
-//                         areaName: "City Center",
-//                         costForTwo: "₹500 for two",
-//                         cuisines: ["Indian", "North Indian", "Biryani"],
-//                         avgRating: 4.2,
-//                         sla: { deliveryTime: 35, lastMileTravel: 4 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "20% OFF",
-//                           subHeader: "UPTO ₹50"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "567890",
-//                         name: "Chinese Dragon",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/18/ba9f1f59-30d5-44de-afad-df6db8471ead_9648.jpg",
-//                         locality: "Commercial Street",
-//                         areaName: "East District",
-//                         costForTwo: "₹350 for two",
-//                         cuisines: ["Chinese", "Asian", "Thai"],
-//                         avgRating: 4.4,
-//                         sla: { deliveryTime: 28, lastMileTravel: 2.8 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "60% OFF",
-//                           subHeader: "UPTO ₹120"
-//                         }
-//                       }
-//                     },
-//                     {
-//                       info: {
-//                         id: "678901",
-//                         name: "Dessert Delight",
-//                         cloudinaryImageId:
-//                           "RX_THUMBNAIL/IMAGES/VENDOR/2024/11/8/731001f1-f1c4-4f5f-849f-79a697cb0b72_390173.jpg",
-//                         locality: "Lavelle Road",
-//                         areaName: "West End",
-//                         costForTwo: "₹200 for two",
-//                         cuisines: ["Desserts", "Ice Cream", "Bakery"],
-//                         avgRating: 4.6,
-//                         sla: { deliveryTime: 22, lastMileTravel: 1.8 },
-//                         aggregatedDiscountInfoV3: {
-//                           header: "25% OFF",
-//                           subHeader: "UPTO ₹60"
-//                         }
-//                       }
-//                     },
-//                   ]
-//                 }
-//               }
-//             }
-//           }
-//         }
-//       ]
-//     }
-//   }
-// };
 export const DUMMY_RESTAURANTS = {
   status: true,
   message: "Restaurant List fetched successfully",
@@ -590,7 +13,7 @@ export const DUMMY_RESTAURANTS = {
                   restaurants: [
                     {
                       info: {
-                        id: "RES001",
+                        id: "123456",
                         name: "Pizza Paradise",
                         cloudinaryImageId:
                           "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/17/6def0f0f-9e6c-45c0-b5e6-05af750f27b5_795906.JPG",
@@ -602,13 +25,13 @@ export const DUMMY_RESTAURANTS = {
                         sla: { deliveryTime: 30, lastMileTravel: 3.5 },
                         aggregatedDiscountInfoV3: {
                           header: "50% OFF",
-                          subHeader: "UPTO ₹100",
-                        },
-                      },
+                          subHeader: "UPTO ₹100"
+                        }
+                      }
                     },
                     {
                       info: {
-                        id: "RES002",
+                        id: "234567",
                         name: "Burger Hub",
                         cloudinaryImageId:
                           "RX_THUMBNAIL/IMAGES/VENDOR/2024/6/24/acfcaacc-edf0-4189-8264-d614d312c0ee_740457.JPG",
@@ -620,13 +43,13 @@ export const DUMMY_RESTAURANTS = {
                         sla: { deliveryTime: 25, lastMileTravel: 2 },
                         aggregatedDiscountInfoV3: {
                           header: "40% OFF",
-                          subHeader: "UPTO ₹80",
-                        },
-                      },
+                          subHeader: "UPTO ₹80"
+                        }
+                      }
                     },
                     {
                       info: {
-                        id: "RES003",
+                        id: "345678",
                         name: "Green Bites",
                         cloudinaryImageId: "e0839ff574213e6f35b3899ebf1fc597",
                         locality: "Residency Road",
@@ -637,13 +60,13 @@ export const DUMMY_RESTAURANTS = {
                         sla: { deliveryTime: 20, lastMileTravel: 1.5 },
                         aggregatedDiscountInfoV3: {
                           header: "30% OFF",
-                          subHeader: "UPTO ₹75",
-                        },
-                      },
+                          subHeader: "UPTO ₹75"
+                        }
+                      }
                     },
                     {
                       info: {
-                        id: "RES004",
+                        id: "456789",
                         name: "Spice Kingdom",
                         cloudinaryImageId:
                           "RX_THUMBNAIL/IMAGES/VENDOR/2024/6/24/acfcaacc-edf0-4189-8264-d614d312c0ee_740457.JPG",
@@ -655,13 +78,13 @@ export const DUMMY_RESTAURANTS = {
                         sla: { deliveryTime: 35, lastMileTravel: 4 },
                         aggregatedDiscountInfoV3: {
                           header: "20% OFF",
-                          subHeader: "UPTO ₹50",
-                        },
-                      },
+                          subHeader: "UPTO ₹50"
+                        }
+                      }
                     },
                     {
                       info: {
-                        id: "RES005",
+                        id: "567890",
                         name: "Chinese Dragon",
                         cloudinaryImageId:
                           "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/18/ba9f1f59-30d5-44de-afad-df6db8471ead_9648.jpg",
@@ -673,13 +96,13 @@ export const DUMMY_RESTAURANTS = {
                         sla: { deliveryTime: 28, lastMileTravel: 2.8 },
                         aggregatedDiscountInfoV3: {
                           header: "60% OFF",
-                          subHeader: "UPTO ₹120",
-                        },
-                      },
+                          subHeader: "UPTO ₹120"
+                        }
+                      }
                     },
                     {
                       info: {
-                        id: "RES006",
+                        id: "678901",
                         name: "Dessert Delight",
                         cloudinaryImageId:
                           "RX_THUMBNAIL/IMAGES/VENDOR/2024/11/8/731001f1-f1c4-4f5f-849f-79a697cb0b72_390173.jpg",
@@ -691,13 +114,13 @@ export const DUMMY_RESTAURANTS = {
                         sla: { deliveryTime: 22, lastMileTravel: 1.8 },
                         aggregatedDiscountInfoV3: {
                           header: "25% OFF",
-                          subHeader: "UPTO ₹60",
-                        },
-                      },
+                          subHeader: "UPTO ₹60"
+                        }
+                      }
                     },
                     {
                       info: {
-                        id: "RES007",
+                        id: "789012",
                         name: "Sushi Station",
                         cloudinaryImageId:
                           "RX_THUMBNAIL/IMAGES/VENDOR/2024/6/24/acfcaacc-edf0-4189-8264-d614d312c0ee_740457.JPG",
@@ -709,13 +132,13 @@ export const DUMMY_RESTAURANTS = {
                         sla: { deliveryTime: 40, lastMileTravel: 5.2 },
                         aggregatedDiscountInfoV3: {
                           header: "15% OFF",
-                          subHeader: "UPTO ₹150",
-                        },
-                      },
+                          subHeader: "UPTO ₹150"
+                        }
+                      }
                     },
                     {
                       info: {
-                        id: "RES008",
+                        id: "890123",
                         name: "South Spice",
                         cloudinaryImageId:
                           "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/17/6def0f0f-9e6c-45c0-b5e6-05af750f27b5_795906.JPG",
@@ -727,13 +150,13 @@ export const DUMMY_RESTAURANTS = {
                         sla: { deliveryTime: 25, lastMileTravel: 3 },
                         aggregatedDiscountInfoV3: {
                           header: "35% OFF",
-                          subHeader: "UPTO ₹70",
-                        },
-                      },
+                          subHeader: "UPTO ₹70"
+                        }
+                      }
                     },
                     {
                       info: {
-                        id: "RES009",
+                        id: "901234",
                         name: "Pasta Palace",
                         cloudinaryImageId:
                           "RX_THUMBNAIL/IMAGES/VENDOR/2025/10/17/7bd350a8-55e7-459b-83a2-e250e670d194_14558.JPG",
@@ -745,71 +168,142 @@ export const DUMMY_RESTAURANTS = {
                         sla: { deliveryTime: 32, lastMileTravel: 3.8 },
                         aggregatedDiscountInfoV3: {
                           header: "45% OFF",
-                          subHeader: "UPTO ₹90",
-                        },
-                      },
+                          subHeader: "UPTO ₹90"
+                        }
+                      }
                     },
                     {
                       info: {
-                        id: "RES010",
-                        name: "The Grill House",
+                        id: "123456",
+                        name: "Pizza Paradise",
                         cloudinaryImageId:
                           "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/17/6def0f0f-9e6c-45c0-b5e6-05af750f27b5_795906.JPG",
-                        locality: "Whitefield",
-                        areaName: "East Bangalore",
-                        costForTwo: "₹600 for two",
-                        cuisines: ["BBQ", "Grills", "Continental"],
-                        avgRating: 4.4,
-                        sla: { deliveryTime: 38, lastMileTravel: 4.5 },
+                        locality: "MG Road",
+                        areaName: "Central District",
+                        costForTwo: "₹400 for two",
+                        cuisines: ["Pizza", "Italian", "Fast Food"],
+                        avgRating: 4.3,
+                        sla: { deliveryTime: 30, lastMileTravel: 3.5 },
                         aggregatedDiscountInfoV3: {
-                          header: "10% OFF",
-                          subHeader: "UPTO ₹120",
-                        },
-                      },
+                          header: "50% OFF",
+                          subHeader: "UPTO ₹100"
+                        }
+                      }
                     },
                     {
                       info: {
-                        id: "RES011",
-                        name: "Taco Fiesta",
+                        id: "234567",
+                        name: "Burger Hub",
                         cloudinaryImageId:
                           "RX_THUMBNAIL/IMAGES/VENDOR/2024/6/24/acfcaacc-edf0-4189-8264-d614d312c0ee_740457.JPG",
-                        locality: "HSR Layout",
-                        areaName: "South Bangalore",
-                        costForTwo: "₹350 for two",
-                        cuisines: ["Mexican", "Tacos", "Fast Food"],
-                        avgRating: 4.3,
-                        sla: { deliveryTime: 27, lastMileTravel: 2.5 },
+                        locality: "Park Street",
+                        areaName: "Downtown",
+                        costForTwo: "₹300 for two",
+                        cuisines: ["Burgers", "American", "Fast Food"],
+                        avgRating: 4.5,
+                        sla: { deliveryTime: 25, lastMileTravel: 2 },
                         aggregatedDiscountInfoV3: {
-                          header: "55% OFF",
-                          subHeader: "UPTO ₹110",
-                        },
-                      },
+                          header: "40% OFF",
+                          subHeader: "UPTO ₹80"
+                        }
+                      }
                     },
                     {
                       info: {
-                        id: "RES012",
-                        name: "Kerala Kitchen",
-                        cloudinaryImageId:
-                          "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/18/ba9f1f59-30d5-44de-afad-df6db8471ead_9648.jpg",
-                        locality: "Malleswaram",
-                        areaName: "North Bangalore",
-                        costForTwo: "₹280 for two",
-                        cuisines: ["Kerala", "South Indian", "Seafood"],
-                        avgRating: 4.6,
-                        sla: { deliveryTime: 30, lastMileTravel: 3.2 },
+                        id: "345678",
+                        name: "Green Bites",
+                        cloudinaryImageId: "e0839ff574213e6f35b3899ebf1fc597",
+                        locality: "Residency Road",
+                        areaName: "South Zone",
+                        costForTwo: "₹250 for two",
+                        cuisines: ["Healthy Food", "Salads", "Vegan"],
+                        avgRating: 4.7,
+                        sla: { deliveryTime: 20, lastMileTravel: 1.5 },
                         aggregatedDiscountInfoV3: {
                           header: "30% OFF",
-                          subHeader: "UPTO ₹80",
-                        },
-                      },
+                          subHeader: "UPTO ₹75"
+                        }
+                      }
                     },
-                  ],
-                },
-              },
-            },
-          },
-        },
-      ],
-    },
-  },
+                    {
+                      info: {
+                        id: "456789",
+                        name: "Spice Kingdom",
+                        cloudinaryImageId:
+                          "RX_THUMBNAIL/IMAGES/VENDOR/2024/6/24/acfcaacc-edf0-4189-8264-d614d312c0ee_740457.JPG",
+                        locality: "Brigade Road",
+                        areaName: "City Center",
+                        costForTwo: "₹500 for two",
+                        cuisines: ["Indian", "North Indian", "Biryani"],
+                        avgRating: 4.2,
+                        sla: { deliveryTime: 35, lastMileTravel: 4 },
+                        aggregatedDiscountInfoV3: {
+                          header: "20% OFF",
+                          subHeader: "UPTO ₹50"
+                        }
+                      }
+                    },
+                    {
+                      info: {
+                        id: "567890",
+                        name: "Chinese Dragon",
+                        cloudinaryImageId:
+                          "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/18/ba9f1f59-30d5-44de-afad-df6db8471ead_9648.jpg",
+                        locality: "Commercial Street",
+                        areaName: "East District",
+                        costForTwo: "₹350 for two",
+                        cuisines: ["Chinese", "Asian", "Thai"],
+                        avgRating: 4.4,
+                        sla: { deliveryTime: 28, lastMileTravel: 2.8 },
+                        aggregatedDiscountInfoV3: {
+                          header: "60% OFF",
+                          subHeader: "UPTO ₹120"
+                        }
+                      }
+                    },
+                    {
+                      info: {
+                        id: "678901",
+                        name: "Dessert Delight",
+                        cloudinaryImageId:
+                          "RX_THUMBNAIL/IMAGES/VENDOR/2024/11/8/731001f1-f1c4-4f5f-849f-79a697cb0b72_390173.jpg",
+                        locality: "Lavelle Road",
+                        areaName: "West End",
+                        costForTwo: "₹200 for two",
+                        cuisines: ["Desserts", "Ice Cream", "Bakery"],
+                        avgRating: 4.6,
+                        sla: { deliveryTime: 22, lastMileTravel: 1.8 },
+                        aggregatedDiscountInfoV3: {
+                          header: "25% OFF",
+                          subHeader: "UPTO ₹60"
+                        }
+                      }
+                    },
+                    {
+                      info: {
+                        id: "789012",
+                        name: "Sushi Station",
+                        cloudinaryImageId:
+                          "RX_THUMBNAIL/IMAGES/VENDOR/2024/6/24/acfcaacc-edf0-4189-8264-d614d312c0ee_740457.JPG",
+                        locality: "Indiranagar",
+                        areaName: "Uptown",
+                        costForTwo: "₹800 for two",
+                        cuisines: ["Japanese", "Sushi", "Asian"],
+                        avgRating: 4.8,
+                        sla: { deliveryTime: 40, lastMileTravel: 5.2 },
+                        aggregatedDiscountInfoV3: {
+                          header: "15% OFF",
+                          subHeader: "UPTO ₹150"
+                        }
+                      }
+                    },
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
 };
