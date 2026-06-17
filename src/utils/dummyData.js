@@ -297,6 +297,7 @@ export const DUMMY_RESTAURANTS = {
                         }
                       }
                     },
+                    {
                     info: {
                         id: "123456",
                         name: "Pizza Paradise",
