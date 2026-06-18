@@ -16,7 +16,7 @@ const ResCard = (props) => {
   const ratingColor = ratingValue >= 3.5 ? "bg-green-500" : "bg-amber-500";
 
   return (
-    <div className="p-4 w-full sm:w-80 md:w-60 lg:w-80 xl:w-82 rounded-lg shadow-md bg-white transition-all duration-200 hover:scale-105 hover:shadow-xl">
+    <div className="p-4 w-full rounded-lg shadow-md bg-white transition-all duration-200 hover:scale-105 hover:shadow-xl">
       <div className="relative w-full aspect-[4/3] overflow-hidden rounded-lg">
         <img
           className="w-full h-full object-cover"

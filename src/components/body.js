@@ -87,7 +87,7 @@ const Body = () => {
               />
             </div>
             <button
-              onClick={() => {}}
+              onClick={() => { }}
               className="bg-orange-600 hover:bg-orange-700 text-white font-semibold px-6 py-3 transition-colors"
             >
               Search
@@ -97,11 +97,10 @@ const Body = () => {
           <div className="flex justify-center gap-2 mt-4">
             <button
               onClick={toggleTopRated}
-              className={`px-4 py-1.5 rounded-full text-sm font-semibold border transition-colors ${
-                activeFilter === "topRated"
+              className={`px-4 py-1.5 rounded-full text-sm font-semibold border transition-colors ${activeFilter === "topRated"
                   ? "bg-white text-orange-700 border-white"
                   : "bg-transparent text-white border-white/40 hover:bg-white/10"
-              }`}
+                }`}
             >
               ⭐ Top Rated
             </button>
@@ -110,13 +109,13 @@ const Body = () => {
       </div>
 
       {/* Results */}
-      <div className="px-4 md:px-8 py-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {visibleRestaurants.length === 0 ? (
           <p className="text-center text-gray-500 py-12">
             No restaurants found. Try a different search.
           </p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
             {visibleRestaurants.map((res, index) => (
               <Link key={`${res.info.id}-${index}`} to={`/restaurants/${res.info.id}`}>
                 <ResCard resData={res} />
@@ -136,6 +135,7 @@ const Body = () => {
           </div>
         )}
       </div>
+
     </div>
   );
 };
